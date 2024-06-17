@@ -10,7 +10,6 @@ GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(TRIG_PIN, GPIO.OUT)
 GPIO.setup(ECHO_PIN, GPIO.IN)
-GPIO.setup(Buzzer, GPIO.OUT)
 
 def get_distance():
     GPIO.output(TRIG_PIN, True)
@@ -35,10 +34,8 @@ try:
     while True:
         distance = get_distance()
         if distance < 10:
-            GPIO.output(Buzzer, GPIO.HIGH)
             print(f"Object detected at {distance:.1f} cm")
         else:
-            GPIO.output(Buzzer, GPIO.LOW)
             print("No object detected")
         time.sleep(0.5)
         
