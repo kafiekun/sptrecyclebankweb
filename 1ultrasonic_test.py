@@ -1,10 +1,8 @@
 import RPi.GPIO as GPIO
 import time
 
-
 TRIG_PIN = 23
 ECHO_PIN = 24
-
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
@@ -31,14 +29,20 @@ def get_distance():
     return distance
 
 try:
+    print("Starting distance measurement loop...")
     while True:
         distance = get_distance()
+        print(f"Measured distance: {distance:.1f} cm")
         if distance < 10:
             print(f"Object detected at {distance:.1f} cm")
         else:
             print("No object detected")
         time.sleep(0.5)
-        
+
 except KeyboardInterrupt:
     print("Exiting..")
+    GPIO.cleanup()
+
+except Exception as e:
+    print(f"An error occurred: {e}")
     GPIO.cleanup()
