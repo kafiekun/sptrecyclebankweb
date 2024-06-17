@@ -36,12 +36,11 @@ def get_distance():
 
 try:
     while True:
-        distance = get_distance()
+        distance = get_distance()  # Measure the distance
         if distance < 10:  # Threshold distance set to 10 cm
-            GPIO.output(Buzzer, GPIO.HIGH)
-            print("Object detected at {:.1f} cm".format(distance))
+            GPIO.output(Buzzer, GPIO.HIGH)  # Activate buzzer if object is within 10 cm
+            print(f"Object detected at {distance:.1f} cm")
         else:
+            GPIO.output(Buzzer, GPIO.LOW)  # Deactivate buzzer if object is farther than 10 cm
             print("No object detected")
-            GPIO.output(Buzzer, GPIO.LOW)
-        time.sleep(0.5)
-
+        time.sleep(0.5)  # Wait for half a second before next measurement
