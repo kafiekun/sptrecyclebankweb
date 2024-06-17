@@ -41,3 +41,7 @@ try:
             GPIO.output(Buzzer, GPIO.LOW)
             print("No object detected")
         time.sleep(0.5)
+        
+except KeyboardInterrupt:
+    print("Exiting..")
+    GPIO.cleanup()
